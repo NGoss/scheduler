@@ -12,17 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.foinse.scheduler.entities.Actor;
 import io.foinse.scheduler.entities.Character;
 import io.foinse.scheduler.entities.Scene;
 import io.foinse.scheduler.entities.Show;
-import io.foinse.scheduler.model.AddActorRequest;
 import io.foinse.scheduler.model.AddCharacterRequest;
 import io.foinse.scheduler.model.AddCharacterToSceneRequest;
 import io.foinse.scheduler.model.AddStaffRequest;
 import io.foinse.scheduler.model.CreateSceneRequest;
 import io.foinse.scheduler.model.CreateShowRequest;
-import io.foinse.scheduler.service.ActorService;
 import io.foinse.scheduler.service.CharacterService;
 import io.foinse.scheduler.service.SceneService;
 import io.foinse.scheduler.service.ShowService;
@@ -33,15 +30,12 @@ public class ShowController {
 
     private final ShowService showService;
     private final SceneService sceneService;
-    private final ActorService actorService;
 
     private final CharacterService characterService;
 
-    public ShowController(ShowService showService, SceneService sceneService,
-            ActorService actorService, CharacterService characterService) {
+    public ShowController(ShowService showService, SceneService sceneService, CharacterService characterService) {
         this.showService = showService;
         this.sceneService = sceneService;
-        this.actorService = actorService;
         this.characterService = characterService;
     }
 
@@ -86,26 +80,6 @@ public class ShowController {
     public Scene addCharacterToScene(@RequestBody AddCharacterToSceneRequest request,
             @PathVariable String sid, @PathVariable String sceneId) {
         return sceneService.addCharacterToScene(sceneId, request.getCharacterId());
-    }
-
-    @PostMapping("/{sid}/actor")
-    @CrossOrigin(origins = "http://localhost:5173")
-    public Show addActorToShow(@PathVariable String sid, @RequestBody AddActorRequest request) {
-        Actor actor = actorService.create(request);
-        return showService.addActorToShow(sid, actor.getId());
-    }
-
-    @DeleteMapping("/{sid}/actor/{actorId}")
-    @CrossOrigin(origins = "http://localhost:5173")
-    public boolean deleteActor(@PathVariable String sid, @PathVariable String actorId) {
-        return actorService.delete(actorId);
-    }
-
-    @PutMapping("/{sid}/actor/{actorId}")
-    @CrossOrigin(origins = "http://localhost:5173")
-    public Actor updateActor(@PathVariable String sid, @PathVariable String actorId, @RequestBody
-            Actor request) {
-        return actorService.update(request);
     }
 
     @PostMapping("/{sid}/character")
