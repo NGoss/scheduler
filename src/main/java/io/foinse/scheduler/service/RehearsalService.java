@@ -8,7 +8,6 @@ import io.foinse.scheduler.data.ActorRepository;
 import io.foinse.scheduler.data.RehearsalRepository;
 import io.foinse.scheduler.entities.Actor;
 import io.foinse.scheduler.entities.Rehearsal;
-import io.foinse.scheduler.entities.RehearsalType;
 import io.foinse.scheduler.model.CreateRehearsalRequest;
 
 @Service
@@ -28,10 +27,6 @@ public class RehearsalService {
         Rehearsal rehearsal = rehearsalRepository.findById(rehearsalId);
         if (actor == null || rehearsal == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        if (actor.getConflicts().contains(rehearsal.getStart().toLocalDate())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
         return rehearsalRepository.save(rehearsal);
