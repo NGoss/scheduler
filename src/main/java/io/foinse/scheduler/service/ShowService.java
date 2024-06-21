@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import io.foinse.scheduler.data.ActorRepository;
 import io.foinse.scheduler.data.CharacterRepository;
 import io.foinse.scheduler.data.StaffRepository;
-import io.foinse.scheduler.data.SceneRepository;
 import io.foinse.scheduler.data.ShowRepository;
 import io.foinse.scheduler.entities.Actor;
 import io.foinse.scheduler.entities.Character;
@@ -21,16 +20,13 @@ import io.foinse.scheduler.model.CreateShowRequest;
 public class ShowService {
     private final ShowRepository showRepository;
     private final StaffRepository staffRepository;
-    private final SceneRepository sceneRepository;
     private final ActorRepository actorRepository;
     private final CharacterRepository characterRepository;
 
     public ShowService(ShowRepository showRepository, StaffRepository staffRepository,
-            SceneRepository sceneRepository, ActorRepository actorRepository,
-            CharacterRepository characterRepository) {
+            ActorRepository actorRepository, CharacterRepository characterRepository) {
         this.showRepository = showRepository;
         this.staffRepository = staffRepository;
-        this.sceneRepository = sceneRepository;
         this.actorRepository = actorRepository;
         this.characterRepository = characterRepository;
     }

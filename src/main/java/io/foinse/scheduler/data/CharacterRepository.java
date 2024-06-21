@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.mongodb.client.result.DeleteResult;
 
 import io.foinse.scheduler.entities.Character;
-import io.foinse.scheduler.service.CharacterService;
 
 @Repository
 public class CharacterRepository {

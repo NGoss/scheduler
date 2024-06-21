@@ -1,6 +1,5 @@
 package io.foinse.scheduler.data;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoOperations;
