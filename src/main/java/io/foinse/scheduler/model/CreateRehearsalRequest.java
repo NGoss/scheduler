@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class CreateRehearsalRequest {
+    private String showId;
     private RehearsalType type;
     private LocalDateTime start;
     private LocalDateTime end;
