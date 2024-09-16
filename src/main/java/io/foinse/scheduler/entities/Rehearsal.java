@@ -18,6 +18,6 @@ public class Rehearsal {
     private LocalDateTime end;
     private RehearsalType type;
     @DocumentReference
-    private List<Actor> actors;
+    private List<Scene> scenes;
     private String location;
 }
